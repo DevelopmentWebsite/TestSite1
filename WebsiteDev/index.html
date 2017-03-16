@@ -1,0 +1,118 @@
+<!-- By Sanjay-B(Sanjay Bhadra)-->
+<!-- Possible interface for service via website/webapp-->
+<!-- Landing Page => Search Page -->
+<!-- Copyright SAGE. All Rights Reserved -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sage - A Collaboration Tool</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<!-- CSS -->
+<!-- Backup: background: #6fd2d4; -->
+<style>
+	html,body {
+  		height:100%;
+  		font-size:1000px;
+  		overflow: hidden;
+	}
+
+	h1 {color: white;}
+	
+	h2 {color: white;} 
+  	
+	h3 {color: white;} 
+  	
+	h4 {color: white;} 
+	
+	h5 {color: white;} 
+
+	.container-fluid {
+	    padding: 10px;
+	}
+
+	.btn:focus, .btn:active:focus, .btn.active:focus {
+    	outline: 0 none;
+	}
+
+	footer {
+	    background: #d8d6d6;
+	    position: absolute;
+	    left: 0;
+	    bottom: 0;
+	    width: 100%;
+	    height: 20px;
+	}
+
+	.hvr-underline-from-center {
+	  	display: inline-block;
+	  	vertical-align: middle;
+	    -webkit-transform: perspective(1px) translateZ(0);
+	  	transform: perspective(1px) translateZ(0);
+	  	box-shadow: 0 0 1px transparent;
+	  	position: relative;
+	  	overflow: hidden;
+	}
+	.hvr-underline-from-center:before {
+	  	content: "";
+	  	position: absolute;
+	  	z-index: -1;
+	  	left: 50%;
+	  	right: 50%;
+	  	bottom: 0;
+	  	background: #ffffff;
+	  	height: 4px;
+	    -webkit-transition-property: left, right;
+	  	transition-property: left, right;
+	    -webkit-transition-duration: 0.3s;
+	  	transition-duration: 0.3s;
+	    -webkit-transition-timing-function: ease-out;
+	  	transition-timing-function: ease-out;
+	}
+	.hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+	  	left: 0;
+	  	right: 0;
+	}
+
+
+</style>
+<!-- End CSS -->
+
+<!-- JS --> 
+<!-- Functions are better at the top the in the button itself -->
+<script type="text/javascript">
+	function GoToSB(){
+  		window.location.href = "http://127.0.0.1:8000/search/";
+	}
+
+	function GoToLI(){
+		window.location.href = "http://127.0.0.1:8000/user/login/";
+	} 
+</script>
+<!-- End JS -->
+
+<button onclick="GoToLI()" class="btn btn-default pull-right hvr-underline-from-center" style ='outline: 0 none; background-color: #d8d6d6'; contenteditable="false"><font color="white">Login</font></button>
+
+<button class="btn btn-default pull-right hvr-underline-from-center" style ='outline: 0 none; background-color: #d8d6d6'; contenteditable="false"><font color="white">About</font></button>
+
+<div class="row" style ='background-color: #d8d6d6;'></div>
+
+<div class="container-fluid" style ='background-color: #0fbff2; max-width:5000px'>
+	<h1 class="text-center" style ='font-size: 155px'><strong>SAGE</strong></h1>
+	<h4 class="text-center" style='color: white; font-size: 15px'><i>"By Students, for students"</i></h4>
+	<button onclick="GoToSB()" class="btn btn-default center-block" style ='background-color: #d8d6d6;' contenteditable="false"><font color="white"><strong>CONTINUE</strong></font>
+	</button>
+</div> 
+
+<!-- Footer -->
+<footer>
+	<p class="text-center" style ='color: white; font-size: 13px'>Copyright &copy; 2017 Sage.io. All Rights Reserved. Patents Pending.</p>
+</footer>
+
+<body>
