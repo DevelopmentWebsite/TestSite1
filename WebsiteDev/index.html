@@ -16,46 +16,64 @@
 
 <!-- CSS -->
 <!-- Backup: background: #6fd2d4; -->
+<!-- overflow: hidden; -->
 <style>
 	html,body {
   		height:100%;
   		font-size:1000px;
-  		overflow: hidden;
+      outline: none;
 	}
 
-	h1 {color: white;}
-	
-	h2 {color: white;} 
-  	
-	h3 {color: white;} 
-  	
-	h4 {color: white;} 
-	
-	h5 {color: white;} 
+	h1 {
+    color: white;
+    top: 500px;
+    text-shadow: 15px 2px 20px rgb(119, 144, 143);
+  }
 
 	.container-fluid {
 	    padding: 10px;
 	}
 
+  .btn {
+    outline: none !important;
+    border: none;
+  }
+
 	.btn:focus, .btn:active:focus, .btn.active:focus {
-    	outline: 0 none;
+    	outline: none;
+      border: none;
 	}
+
+  .btn:focus,.btn:active:focus,.btn.active:focus, .btn.focus,.btn:active.focus,.btn.active.focus {
+      outline: none;
+      border: none;
+  }
 
 	footer {
 	    background: #d8d6d6;
 	    position: absolute;
 	    left: 0;
+      top: 730px;
 	    bottom: 0;
 	    width: 100%;
-	    height: 20px;
+	    height: 80px;
 	}
+
+  .container {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 1000px;
+  }
 
 	.hvr-underline-from-center {
 	  	display: inline-block;
 	  	vertical-align: middle;
 	    -webkit-transform: perspective(1px) translateZ(0);
 	  	transform: perspective(1px) translateZ(0);
-	  	box-shadow: 0 0 1px transparent;
 	  	position: relative;
 	  	overflow: hidden;
 	}
@@ -80,12 +98,145 @@
 	  	right: 0;
 	}
 
+  #adv-search {
+    padding: 10px 0 0 0;
+  }
+
+  #adv-search .nlk-dropdown {
+      left: -220px;
+  }
+
+  @media screen and (min-width: 768px) {
+      #adv-search {
+          width: 500px;
+          margin: 0 auto;
+      }
+  }
+
+  #nlk-search-submit {
+    width: 50px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  #nlk-search-str {
+    width: 600px;
+    height: 30px;
+    left: -90px;
+  }
+
+  .adv-search-target {
+      margin: 5px 0 0 0;
+      font-size: smaller;
+  }
+
+  html,body {
+      height:90%;
+      font-size:1000px;
+      overflow: hidden;
+  }
+
+  h1 {
+    color: white;
+    position: absolute;
+  }
+
+  h2 {
+    color: white;
+    position: absolute;
+    height: 210px;
+    left:-1080px;
+    right:0px;
+    top:-10px;
+    bottom:0px;
+  }
+    
+  h3 {
+    color: white;
+  }
+    
+  h4 {
+    color: white;
+  }
+
+  h5 {
+    color: white;
+  }
+
+  .container-fluid {
+      padding: 10px;
+      position:absolute;
+      height: 200px;
+      left:0px;
+      right:0px;
+      top:30px;
+      bottom:0px;
+  }
+
+
+  .btn:focus, .btn:active:focus, .btn.active:focus {
+        outline: 0 none;
+  }
+
+  div.absolute {
+    position: absolute;
+    top: 350px;
+    right: 0;
+    left: 520px;
+    width: 200px;
+    height: 100px;
+  }
+
+  div.row {
+    width:100%;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    width: 1500px;
+    height: 35px;
+  }
+
+  .text-center-title {
+    top: 100px;
+    right: 560px;
+    position:  absolute;
+  }
+
+  .text-center-subtitle {
+    top: 270px;
+    right: 680px;
+    position: absolute;
+  }
+
+  .btn-primary-ice {
+    top: 100px;
+    right: 410px;
+    position: absolute;
+  }
+
+  .dropdown-toggle-something {
+    top: -8px;
+    right: 65px;
+    height: auto;
+    position: absolute;
+  }
+
+  .glyphicon.glyphicon-chevron-down {
+    font-size: 40px;
+  }
+
+  .input-group-btn-question {
+    top: 100px;
+    right: 410px;
+    position: absolute;
+  }
 
 </style>
 <!-- End CSS -->
 
-<!-- JS --> 
-<!-- Functions are better at the top the in the button itself -->
+<!-- JS -->
+<!-- Functions are better at the top then in the button itself -->
 <script type="text/javascript">
 	function GoToSB(){
   		window.location.href = "http://127.0.0.1:8000/search/";
@@ -93,26 +244,109 @@
 
 	function GoToLI(){
 		window.location.href = "http://127.0.0.1:8000/user/login/";
-	} 
+	}
+
+
+  jQuery(document).ready(function($) {
+
+
+  jQuery('#nlk-search-str').on('keydown', function(e) {
+     if (e.which == 13 || event.keyCode == 13 ){
+         jQuery('#nlk-search-submit').trigger('click');
+     }
+  });
+
+  jQuery('#nlk-search-methods').on('keydown', function(e) {
+     if (e.which == 13 || event.keyCode == 13 ){
+         jQuery('#nlk-search-submit').trigger('click');
+     }
+  });
+
+
+  jQuery('.nlk-search-type').on('click', function(){
+      var targetSite = jQuery(this).data('value');
+      var searchAction = jQuery(this).data('action');
+      var searchParam = jQuery(this).data('param');
+      var searchTarget = jQuery(this).data('target');
+      var targetRadio = jQuery(this).data('radio');
+
+     jQuery(targetRadio).prop('checked', true);
+     jQuery('#nlk-search-str').attr('placeholder',targetSite);
+     jQuery('#nlk-search-str').attr('name', searchParam);
+     jQuery('#nlk-search-form').attr('action', searchAction);
+     jQuery('#nlk-search-form').attr('target', searchTarget);
+
+  });
+
+
+  jQuery('#nlk-search-submit').on('click', function(){
+     var searchStr = jQuery('#nlk-search-str').val();
+     if (!searchStr || searchStr === '') {
+         var noquery = jQuery('#nlk-search-str').data('def');
+         jQuery('#nlk-search-str').attr('placeholder', noquery);
+     } else {
+         jQuery('#nlk-search-form').submit();
+     }
+  });
+
+});
+
 </script>
 <!-- End JS -->
 
-<button onclick="GoToLI()" class="btn btn-default pull-right hvr-underline-from-center" style ='outline: 0 none; background-color: #d8d6d6'; contenteditable="false"><font color="white">Login</font></button>
 
-<button class="btn btn-default pull-right hvr-underline-from-center" style ='outline: 0 none; background-color: #d8d6d6'; contenteditable="false"><font color="white">About</font></button>
+<!-- <div class="row" style ='background-color: #d8d6d6;'></div> -->
+<div class="container" style ='background-color: #488957; max-width:5000px'>
+	<h1 class="text-center-title" style ='font-size: 155px'><strong>SAGE</strong></h1>
+	<h4 class="text-center-subtitle" style='color: white; font-size: 15px'><i>"By Students, for students"</i></h4>
+</div>
 
-<div class="row" style ='background-color: #d8d6d6;'></div>
+<button class="btn btn-default pull-left hvr-underline-from-center" style ='background-color: #488957'; contenteditable="false"><font color="white">About</font></button>
 
-<div class="container-fluid" style ='background-color: #0fbff2; max-width:5000px'>
-	<h1 class="text-center" style ='font-size: 155px'><strong>SAGE</strong></h1>
-	<h4 class="text-center" style='color: white; font-size: 15px'><i>"By Students, for students"</i></h4>
-	<button onclick="GoToSB()" class="btn btn-default center-block" style ='background-color: #d8d6d6;' contenteditable="false"><font color="white"><strong>CONTINUE</strong></font>
-	</button>
-</div> 
+<button onclick="GoToLI()" class="btn btn-default pull-left hvr-underline-from-center" style ='background-color: #488957'; contenteditable="false"><font color="white">Login</font></button>
+
+<!-- Breaks -->
+<br><br>
+<br><br>
+
+<!-- Search Bar -->
+<div class="absolute">
+  <div class="container" id="adv-search">
+
+  <div>
+  <form id="nlk-search-form" method="get" action="/" target="_self">
+  <div class="input-group input-group-lg">
+    <span class="input-group-btn">
+    <button style='background-color: #488957; height: 30px;'; class="btn btn-info dropdown-toggle-something" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="adv-search-drop">
+      <i class="fa fa-caret-down"></i>
+      <!-- <i class="glyphicons glyphicons-question-sign" style="color: blue;"></i> -->
+    </button>
+
+  <ul class="dropdown-menu" style="left: -60px; top: 30px">
+      <li><a role="button" class="nlk-search-type" data-radio="#target-nlk" data-value="Threads - Search Terms" data-action="/" data-param="s" data-target="_self">Related Threads</a></li>
+      <li><a role="button" class="nlk-search-type" data-radio="#target-medvik" data-value="Resources - Search Terms" data-action="http://www.medvik.cz/bmc/opensearch.do" data-param="q" data-target="_self">Related Resources</a></li>
+  </ul>
+
+  </span>
+  <input id="nlk-search-str" name="s" type="text" maxlength="200" class="form-control" placeholder="Left - Select an option" data-def="Left - Required option and/or terms" required>
+
+  <span class="input-group-btn">
+  <button class="btn btn-primary-ice" style='background-color: #488957; outline: 0 none; border: none' type="button" id="nlk-search-submit">
+      <i class="glyphicon glyphicon-chevron-down" style="color: white;"></i>
+  </button>
+
+  </span>
+
+  </div>
+
+  </form>
+  </div>
+
+  </div>
+</div>
 
 <!-- Footer -->
 <footer>
 	<p class="text-center" style ='color: white; font-size: 13px'>Copyright &copy; 2017 Sage.io. All Rights Reserved. Patents Pending.</p>
 </footer>
-
 <body>
